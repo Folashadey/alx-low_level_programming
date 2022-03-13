@@ -1,49 +1,28 @@
-
-gentomacine
-/
-alx-low_level_programming
-Public
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-alx-low_level_programming/0x01-variables_if_else_while/9-print_comb.c
-@gentomacine
-gentomacine all
- 1 contributor
-Executable File  31 lines (25 sloc)  322 Bytes
 #include <stdio.h>
-
 /**
- * main - print single digit numbers
- *
- * Description: print single digit numbers with commas
- *
- * Return: Always 0 (Success)
+ * main - main block
+ * Description: Print all possible combinations fo single-digit numbers.
+ * Numbers must be separated by commas and a space.
+ * You can only use `putchar` to print to console
+ * You can only use `putchar` up to four times.
+ * You are not allowed to use any variable of type `char`.
+ * Return: 0
  */
-
 int main(void)
 {
-	int i;
+	int i = 0;
 
-	i = 48;
-
-	while (i < 58)
+	while (i < 10)
 	{
-		putchar(i);
-		if (i != 57)
+		putchar(i + '0');
+		if (i < 9)
 		{
 			putchar(44);
 			putchar(32);
 		}
 		i++;
 	}
-
-	putchar(10);
+	putchar('\n');
 
 	return (0);
 }
