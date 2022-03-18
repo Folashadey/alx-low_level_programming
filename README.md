@@ -1,2 +1,2 @@
 # alx-low_level_programming
-I'm now a ALX Student, this is my first repository as a full-stack engineer
+This repo contains my project on C programming titled "alx-low_level_programming"
