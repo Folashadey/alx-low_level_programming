@@ -2,68 +2,52 @@
 #include <stdlib.h>
 
 /**
- * *_strcpy - Copy the given string
- * @dest: Location to copy string to
- * @src: String to copy to given location
+ * new_dog - creates a new dog.
+ * @name: name of the dog.
+ * @age: age of the dog.
+ * @owner: owner of the dog.
  *
- * Return: Pointer to dest
- */
-char *_strcpy(char *dest, char *src)
-{
-	int i = 0;
-
-	while (*(src + i) != 0)
-	{
-		*(dest + i) = *(src + i);
-		i++;
-	}
-	*(dest + i) = '\0';
-	return (dest);
-}
-
-/**
- * new_dog - Create a new dog struct
- * @name: Name of dog
- * @age: Age of dog
- * @owner: Owner of dog
- *
- * Return: pointer to struct, NULL if fails
+ * Return: struct dog.
+ * if fails, returns NULL.
  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	dog_t *new_dog;
-	char *new_name;
-	char *new_owner;
-	int len;
+	dog_t *p_dog;
+	int i, lname, lowner;
 
-	new_dog = malloc(sizeof(dog_t));
-	if (new_dog == NULL)
-		return (NULL);
-	len = 0;
-	while (name[len] != '\0')
-		len++;
-	len++;
-	new_name = malloc(len * sizeof(*owner));
-	if (new_name == NULL)
+	p_dog = malloc(sizeof(*p_dog));
+	if (p_dog == NULL || !(name) || !(owner))
 	{
-		free(new_dog);
+		free(p_dog);
 		return (NULL);
 	}
-	len = 0;
-	while (name[len] != '\0')
-		len++;
-	len++;
-	new_owner = malloc(len * sizeof(*name));
-	if (new_owner == NULL)
+
+	for (lname = 0; name[lname]; lname++)
+		;
+
+	for (lowner = 0; owner[lowner]; lowner++)
+		;
+
+	p_dog->name = malloc(lname + 1);
+	p_dog->owner = malloc(lowner + 1);
+
+	if (!(p_dog->name) || !(p_dog->owner))
 	{
-		free(new_name);
-		free(new_dog);
+		free(p_dog->owner);
+		free(p_dog->name);
+		free(p_dog);
 		return (NULL);
 	}
-	_strcpy(new_name, name);
-	_strcpy(new_owner, owner);
-	new_dog->name = new_name;
-	new_dog->age = age;
-	new_dog->owner = new_owner;
-	return (new_dog);
+
+	for (i = 0; i < lname; i++)
+		p_dog->name[i] = name[i];
+	p_dog->name[i] = '\0';
+
+	p_dog->age = age;
+
+	for (i = 0; i < lowner; i++)
+		p_dog->owner[i] = owner[i];
+	p_dog->owner[i] = '\0';
+
+	return (p_dog);
 }
